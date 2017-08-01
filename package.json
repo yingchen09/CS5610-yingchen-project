@@ -1,0 +1,35 @@
+{
+  "name": "yingchen-project",
+  "version": "1.0.0",
+  "description": "Heroku link: https://cs5610-webdev-yingchen-project.herokuapp.com",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yingchen09/CS5610-yingchen-project.git"
+  },
+  "keywords": [
+    "cs5610"
+  ],
+  "author": "Ying Chen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yingchen09/CS5610-yingchen-project/issues"
+  },
+  "homepage": "https://github.com/yingchen09/CS5610-yingchen-project#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
+    "cookies": "^0.7.0",
+    "express": "^4.15.3",
+    "express-session": "^1.15.4",
+    "mongoose": "^4.11.5",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "q": "^1.5.0",
+    "sessions": "0.0.2-7",
+    "textangular": "^1.5.16"
+  }
+}
