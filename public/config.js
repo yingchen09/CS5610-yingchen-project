@@ -39,7 +39,7 @@
                 // controller: "HomeController",
                 // controllerAs: "model"
             })
-            .when('/posts/:postId', {
+            .when('/posts/:pid', {
                 templateUrl : "/views/post/post.view.client.html"
                 // controller: "HomeController",
                 // controllerAs: "model"

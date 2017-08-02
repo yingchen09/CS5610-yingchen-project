@@ -10,7 +10,7 @@ module.exports = function(mongoose){
         'findUserByGoogleId': findUserByGoogleId,
         'updateUser' : updateUser,
         // 'removeWebsiteFromUser' : removeWebsiteFromUser,
-        // 'addWebsiteForUser' : addWebsiteForUser,
+        'addPostForUser' : addPostForUser,
         'deleteUser' : deleteUser
     };
 
@@ -94,15 +94,15 @@ module.exports = function(mongoose){
     //         );
     // }
 
-    // function addWebsiteForUser(userId, websiteId) {
-    //     //console.log("add website for user");
-    //     return userModel
-    //         .findOne({_id: userId})
-    //         .then(function (user) {
-    //             user.websites.push(websiteId);
-    //             return user.save();
-    //         });
-    // }
+    function addPostForUser(userId, postId) {
+        //console.log("add website for user");
+        return userModel
+            .findOne({_id: userId})
+            .then(function (user) {
+                user.posts.push(postId);
+                return user.save();
+            });
+    }
 
     function deleteUser(userId){
         return userModel.remove({
