@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-text pull-left margin-left">
             <a href="#!/posts" class="cl-text-black">
@@ -9,7 +9,7 @@
             New Post
         </a>
         <div class="navbar-text pull-right margin-right">
-            <a ng-click="model.createPage(model.postName, model.postDesc)" class="cl-text-black">
+            <a ng-click="model.createPost(model.postName, model.postDesc)" class="cl-text-black">
                 <span class="glyphicon glyphicon-ok"></span>
             </a>
         </div>
@@ -21,7 +21,7 @@
 
     <label for="postName">Post Name</label>
     <input type="text" class="form-control" placeholder="Post Name" id="postName"
-           ng-model="model.pageName"
+           ng-model="model.postName"
            required>
     <label for="postDesc">Post Content</label>
     <input type="text" class="form-control" placeholder="Post Content" id="postDesc"

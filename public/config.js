@@ -25,24 +25,36 @@
                 }
             })
             .when('/posts', {
-                templateUrl : "/views/post/post-list.view.client.html"
-                // controller: "HomeController",
-                // controllerAs: "model"
+                templateUrl : "/views/post/post-list.view.client.html",
+                controller: "PostListController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
             .when('/posts/new', {
-                templateUrl : "/views/post/post-new.view.client.html"
-                // controller: "HomeController",
-                // controllerAs: "model"
+                templateUrl : "/views/post/post-new.view.client.html",
+                controller: "NewPostController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
             .when('/posts/edit', {
-                templateUrl : "/views/post/post-edit.view.client.html"
-                // controller: "HomeController",
-                // controllerAs: "model"
+                templateUrl : "/views/post/post-edit.view.client.html",
+                controller: "PostEditController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
             .when('/posts/:pid', {
-                templateUrl : "/views/post/post.view.client.html"
-                // controller: "HomeController",
-                // controllerAs: "model"
+                templateUrl : "/views/post/post.view.client.html",
+                controller: "PostController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
             .when('/contacts', {
                 templateUrl : "/views/contact/contact-list.view.client.html"
@@ -67,7 +79,10 @@
             .when('/', {
                 templateUrl : "/views/home/home.view.client.html",
                 controller: "HomeController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
             .otherwise({
                 redirectTo : "/"

@@ -21,7 +21,7 @@
     function NewPostController($timeout, PostService, $location, currentUser) {
         var vm = this;
         vm.uid = currentUser._id;
-        vm.newPost = newPost;
+        vm.createPost = createPost;
 
         function init() {
             PostService
@@ -33,7 +33,7 @@
         }
         init();
 
-        function newPost(postName, postDesc) {
+        function createPost(postName, postDesc) {
             if (postName === undefined || postName === null) {
                 vm.error = "Post name cannot be empty.";
                 $timeout(function () {

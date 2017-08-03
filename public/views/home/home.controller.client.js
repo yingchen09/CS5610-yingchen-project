@@ -5,6 +5,6 @@
 
     function HomeController(currentUser) {
         var vm = this;
-        //vm.currentUser = currentUser;
+        vm.currentUser = currentUser;
     }
 })();
