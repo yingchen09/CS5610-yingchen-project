@@ -79,10 +79,10 @@
             .when('/', {
                 templateUrl : "/views/home/home.view.client.html",
                 controller: "HomeController",
-                controllerAs: "model",
-                resolve: {
-                    currentUser: checkLoggedIn
-                }
+                controllerAs: "model"
+                // resolve: {
+                //     currentUser: checkLoggedIn
+                // }
             })
             .otherwise({
                 redirectTo : "/"

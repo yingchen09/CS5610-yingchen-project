@@ -3,8 +3,8 @@
         .module("WebAppMaker")
         .controller("HomeController", HomeController);
 
-    function HomeController(currentUser) {
+    function HomeController() {
         var vm = this;
-        vm.currentUser = currentUser;
+        //vm.currentUser = currentUser;
     }
 })();
