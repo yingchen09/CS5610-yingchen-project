@@ -3,7 +3,7 @@ module.exports = function() {
     var connectionString =  null;
 
     if (process.env.MONGODB_URI) {
-        connectionString = 'mongodb://<cs5610-webdev-yingchen-project>:<th22977cy>@ds127443.mlab.com:27443/heroku_pz4jfjv2';
+        connectionString = 'mongodb://cs5610-webdev-yingchen-project:th22977cy@ds127443.mlab.com:27443/heroku_pz4jfjv2';
     }
     else
     {
@@ -11,7 +11,7 @@ module.exports = function() {
     }
 
     var mongoose = require('mongoose');
-    mongoose.connect(connectionString);
+    mongoose.connect(connectionString, {useMongoClient:true});
     mongoose.Promise = require('q').Promise;
 
     var db = mongoose.connection;
