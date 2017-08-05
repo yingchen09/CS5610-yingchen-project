@@ -25,15 +25,15 @@
                 }
             })
             .when('/posts', {
-                templateUrl : "/public/views/post/post-list.view.client.html"/*,
+                templateUrl : "/views/post/post-list.view.client.html",
                 controller: "PostListController",
                 controllerAs: "model",
                 resolve: {
                     currentUser: checkLoggedIn
-                }*/
+                }
             })
             .when('/posts/new', {
-                templateUrl : "/public/views/post/post-new.view.client.html",
+                templateUrl : "/views/post/post-new.view.client.html",
                 controller: "NewPostController",
                 controllerAs: "model",
                 resolve: {
@@ -77,12 +77,9 @@
                 // controllerAs: "model"
             })
             .when('/', {
-                templateUrl : "/public/views/home/home.view.client.html",
+                templateUrl : "/views/home/home.view.client.html",
                 controller: "HomeController",
                 controllerAs: "model"
-                // resolve: {
-                //     currentUser: checkLoggedIn
-                // }
             })
             .otherwise({
                 redirectTo : "/"
