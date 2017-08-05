@@ -53,12 +53,75 @@
         }
     }
 
-    function PostEditController() {
+    function PostEditController($routeParams, $location, $timeout, PostService, currentUser) {
+        var vm = this;
+        vm.uid = currentUser._id;
+        vm.pid = $routeParams.pid;
 
+        vm.updatePost = updatePost;
+        vm.deletePost = deletePost;
+
+        PostService
+            .findPostsByUser(vm.uid)
+            .then(function (posts) {
+                vm.posts = posts;
+            });
+
+        PostService
+            .findPostById(vm.pid)
+            .then(function (post) {
+                vm.post = post;
+            }, function (error) {
+                vm.error = "The post not found.";
+                $timeout(function () {
+                    vm.error = null;
+                }, 3000);
+            });
+
+        function updatePost(post) {
+            PostService
+                .updatePost(vm.pid, post)
+                .then(function () {
+                    $location.url("/posts/" + vm.pid);
+                }, function () {
+                    vm.updated = "Post updated.";
+                    $timeout(function () {
+                        vm.updated = null;
+                    }, 3000);
+                });
+        }
+
+        function deletePost(post) {
+            PostService
+                .deletePost(vm.uid, post._id)
+                .then(function () {
+                    $location.url("/posts");
+                }, function (error) {
+                    vm.error = "Unable to remove this post.";
+                    $timeout(function () {
+                        vm.error = null;
+                    }, 3000);
+                });
+        }
     }
 
-    function PostController() {
+    function PostController(currentUser, $routeParams, PostService) {
+        var vm = this;
+        vm.uid = currentUser._id;
+        vm.pid = $routeParams.pid;
 
+        PostService
+            .findPostById(vm.pid)
+            .then(function (post) {
+                vm.post = post;
+                vm.username = currentUser.username;
+                vm.date = post.dateCreated.substring(0, 10);
+            }, function (error) {
+                vm.error = "The post not found.";
+                $timeout(function () {
+                    vm.error = null;
+                }, 3000);
+            });
     }
 
 

@@ -7,11 +7,10 @@
 
         var services = {
             'createPost': createPost,
-            'findPostsByUser': findPostsByUser
-            // 'findPostById': findPostById,
-            // 'updatePost': updatePost,
-            // 'deletePost': deletePost,
-            // 'deletePostsByUser': deletePostsByUser
+            'findPostsByUser': findPostsByUser,
+            'findPostById': findPostById,
+            'updatePost': updatePost,
+            'deletePost': deletePost
         };
         return services;
 
@@ -30,6 +29,31 @@
                     return response.data;
                 });
         }
+
+        function findPostById(postId) {
+            var url = "/api/post/" + postId;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function updatePost(postId, post) {
+            var url = "/api/post/" + postId;
+            return $http.put(url, post)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function deletePost(userId, postId) {
+            var url = "/api/user/" + userId + "/post/" + postId;
+            return $http.delete(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
     }
 
 })();

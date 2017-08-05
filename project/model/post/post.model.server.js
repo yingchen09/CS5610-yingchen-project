@@ -4,7 +4,10 @@ module.exports = function(mongoose, userModel) {
 
     var api = {
         'findPostsByUser': findPostsByUser,
-        'createPost': createPost
+        'createPost': createPost,
+        'findPostById': findPostById,
+        'updatePost': updatePost,
+        'deletePost': deletePost
     };
     return api;
 
@@ -23,5 +26,27 @@ module.exports = function(mongoose, userModel) {
             .find({_user: userId})
             .populate('_user')
             .exec();
+    }
+
+    function findPostById(postId) {
+        return postModel.findOne({_id: postId});
+    }
+
+    function updatePost(postId, post) {
+        return postModel
+            .update({_id: postId},
+                {
+                    name: post.name,
+                    description: post.description
+            });
+    }
+
+    function deletePost(userId, postId) {
+        return postModel
+            .remove({_id: postId})
+            .then(function (status) {
+                return userModel
+                    .removePostFromUser(userId, postId);
+            });
     }
 };

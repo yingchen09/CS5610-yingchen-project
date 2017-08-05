@@ -9,7 +9,7 @@ module.exports = function(mongoose){
         'findUserByCredentials' : findUserByCredentials,
         'findUserByGoogleId': findUserByGoogleId,
         'updateUser' : updateUser,
-        // 'removeWebsiteFromUser' : removeWebsiteFromUser,
+        'removePostFromUser' : removePostFromUser,
         'addPostForUser' : addPostForUser,
         'deleteUser' : deleteUser
     };
@@ -76,23 +76,23 @@ module.exports = function(mongoose){
         }, {$set: user});
     }
 
-    // function removeWebsiteFromUser(userId, websiteId){
-    //     // db.user.update({_id : ObjectId("583cf3287ac013080c4adee5")}, {$push : { "websites" : ObjectId("583cf43693b914082152cc3c")}})
-    //     userModel
-    //         .findById(userId)
-    //         .then(
-    //             function(user){
-    //                 var index = user.websites.indexOf(websiteId);
-    //                 user.websites.splice(index, 1);
-    //                 return user.save();
-    //                 // user.websites.pull(websiteId);
-    //                 // user.save();
-    //             },
-    //             function(error){
-    //                 console.log(error);
-    //             }
-    //         );
-    // }
+    function removePostFromUser(userId, postId){
+        // db.user.update({_id : ObjectId("583cf3287ac013080c4adee5")}, {$push : { "websites" : ObjectId("583cf43693b914082152cc3c")}})
+        userModel
+            .findById(userId)
+            .then(
+                function(user){
+                    var index = user.posts.indexOf(postId);
+                    user.posts.splice(index, 1);
+                    return user.save();
+                    // user.websites.pull(websiteId);
+                    // user.save();
+                },
+                function(error){
+                    console.log(error);
+                }
+            );
+    }
 
     function addPostForUser(userId, postId) {
         //console.log("add website for user");
