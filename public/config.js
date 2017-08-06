@@ -40,7 +40,7 @@
                     currentUser: checkLoggedIn
                 }
             })
-            .when('/posts/edit', {
+            .when('/posts/:pid/edit', {
                 templateUrl : "/views/post/post-edit.view.client.html",
                 controller: "PostEditController",
                 controllerAs: "model",

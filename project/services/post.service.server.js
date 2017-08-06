@@ -30,7 +30,7 @@ module.exports = function(app, models) {
     }
 
     function updatePost(req, res) {
-        var pid = req.params,pid;
+        var pid = req.params.pid;
         var post = req.body;
         postModel
             .updatePost(pid, post)

@@ -61,22 +61,25 @@
         vm.updatePost = updatePost;
         vm.deletePost = deletePost;
 
-        PostService
-            .findPostsByUser(vm.uid)
-            .then(function (posts) {
-                vm.posts = posts;
-            });
+        // PostService
+        //     .findPostsByUser(vm.uid)
+        //     .then(function (posts) {
+        //         vm.posts = posts;
+        //     });
 
-        PostService
-            .findPostById(vm.pid)
-            .then(function (post) {
-                vm.post = post;
-            }, function (error) {
-                vm.error = "The post not found.";
-                $timeout(function () {
-                    vm.error = null;
-                }, 3000);
-            });
+        function init() {
+            PostService
+                .findPostById(vm.pid)
+                .then(function (post) {
+                    vm.post = post;
+                }, function (error) {
+                    vm.error = "The post not found.";
+                    $timeout(function () {
+                        vm.error = null;
+                    }, 3000);
+                });
+        }
+        init();
 
         function updatePost(post) {
             PostService
