@@ -6,7 +6,7 @@
         .controller("PostEditController", PostEditController)
         .controller("PostController", PostController);
 
-    function PostListController(currentUser, PostService) {
+    function PostListController(currentUser, PostService, UserService, $location) {
         var vm = this;
         vm.uid = currentUser._id;
 
@@ -15,6 +15,15 @@
             .then(renderPosts);
         function renderPosts(posts) {
             vm.posts = posts;
+        }
+
+        vm.logout = logout;
+        function logout() {
+            UserService
+                .logout()
+                .then(function() {
+                    $location.url('/');
+                })
         }
     }
 
@@ -108,7 +117,7 @@
         }
     }
 
-    function PostController(currentUser, $routeParams, PostService) {
+    function PostController(currentUser, $routeParams, PostService, UserService, $location) {
         var vm = this;
         vm.uid = currentUser._id;
         vm.pid = $routeParams.pid;
@@ -125,6 +134,15 @@
                     vm.error = null;
                 }, 3000);
             });
+
+        vm.logout = logout;
+        function logout() {
+            UserService
+                .logout()
+                .then(function() {
+                    $location.url('/');
+                })
+        }
     }
 
 
