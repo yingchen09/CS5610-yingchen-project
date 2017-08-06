@@ -30,8 +30,25 @@
         }
     }
 
-    function ContactListController() {
+    function ContactListController(ContactService, currentUser, UserService, $location) {
         var vm = this;
+        vm.uid = currentUser._id;
+
+        ContactService
+            .findContactsByUser(vm.uid)
+            .then(renderContacts);
+        function renderContacts(contacts) {
+            vm.contacts = contacts;
+        }
+
+        vm.logout = logout;
+        function logout() {
+            UserService
+                .logout()
+                .then(function() {
+                    $location.url('/');
+                })
+        }
     }
 
     function ContactSuccessController(currentUser) {

@@ -3,11 +3,8 @@ module.exports = function(mongoose, userModel) {
     var contactModel = mongoose.model('contactModel', contactSchema);
 
     var api = {
-        // 'findPostsByUser': findPostsByUser,
+        'findContactsByUser': findContactsByUser,
         'createContact': createContact
-        // 'findPostById': findPostById,
-        // 'updatePost': updatePost,
-        // 'deletePost': deletePost
     };
     return api;
 
@@ -19,5 +16,12 @@ module.exports = function(mongoose, userModel) {
                 return userModel
                     .addContactForUser(userId, contact._id);
             });
+    }
+
+    function findContactsByUser(userId) {
+        return contactModel
+            .find({_user: userId})
+            .populate('_user')
+            .exec();
     }
 };
