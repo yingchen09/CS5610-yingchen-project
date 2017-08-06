@@ -22,10 +22,13 @@ module.exports = function() {
 
     var userModel = require("./user/user.model.server.js")(mongoose);
     var postModel = require("./post/post.model.server")(mongoose, userModel);
+    var contactModel = require("./contact/contact.model.server")(mongoose, userModel);
+
 
     var models = {
         'userModel' : userModel,
-        'postModel' : postModel
+        'postModel' : postModel,
+        'contactModel' : contactModel
     };
 
     return models;

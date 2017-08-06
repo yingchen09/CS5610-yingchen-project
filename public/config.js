@@ -57,14 +57,28 @@
                 }
             })
             .when('/contacts', {
-                templateUrl : "/views/contact/contact-list.view.client.html"
-                // controller: "HomeController",
-                // controllerAs: "model"
+                templateUrl : "/views/contact/contact-list.view.client.html",
+                controller: "ContactListController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
             .when('/contacts/new', {
-                templateUrl : "/views/contact/contact.view.client.html"
-                // controller: "HomeController",
-                // controllerAs: "model"
+                templateUrl : "/views/contact/contact.view.client.html",
+                controller: "ContactController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
+            })
+            .when('/contacts/success', {
+                templateUrl : "/views/contact/contact-success.view.client.html",
+                controller: "ContactSuccessController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
             .when('/follows', {
                 templateUrl : "/views/follow/follow-list.view.client.html"
@@ -100,6 +114,22 @@
             });
         return deferred.promise;
     }
+
+    // checkCurrentUser = function ($q, $timeout, $http, $location, $rootScope) {
+    //     var deferred = $q.defer();
+    //
+    //     $http
+    //         .get('/api/loggedin')
+    //         .then(function(response) {
+    //             var user = response.data;
+    //             if (user === '0') {
+    //                 user = null;
+    //             }
+    //             deferred.resolve(user);
+    //
+    //         });
+    //     return deferred.promise;
+    // };
 
 
 })();

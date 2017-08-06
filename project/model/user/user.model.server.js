@@ -11,12 +11,15 @@ module.exports = function(mongoose){
         'updateUser' : updateUser,
         'removePostFromUser' : removePostFromUser,
         'addPostForUser' : addPostForUser,
+        'addContactForUser' : addContactForUser,
         'deleteUser' : deleteUser
     };
 
     return api;
 
     // Function Definition Section
+
+
 
     function findUserByGoogleId(googleId) {
         return userModel
@@ -100,6 +103,15 @@ module.exports = function(mongoose){
             .findOne({_id: userId})
             .then(function (user) {
                 user.posts.push(postId);
+                return user.save();
+            });
+    }
+
+    function addContactForUser(userId, contactId) {
+        return userModel
+            .findOne({_id: userId})
+            .then(function (user) {
+                user.contacts.push(contactId);
                 return user.save();
             });
     }
