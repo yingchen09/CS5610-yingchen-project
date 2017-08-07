@@ -23,9 +23,11 @@
            ng-model="model.post.name"
            required>
     <label for="postDesc">Post Content</label>
-    <input type="text" class="form-control" placeholder="Post Content" id="postDesc"
-           ng-model="model.post.description"
-           required>
+    <textarea rows="5" class="form-control" placeholder="Post Content" id="postDesc" ng-model="model.post.description"
+              required></textarea>
+    <!--<input type="text" class="form-control" placeholder="Post Content" id="postDesc"-->
+           <!--ng-model="model.post.description"-->
+           <!--required>-->
 
     <a class="btn btn-danger btn-block" ng-click="model.deletePost(model.post)">
         Delete

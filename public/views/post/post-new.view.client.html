@@ -24,9 +24,12 @@
            ng-model="model.postName"
            required>
     <label for="postDesc">Post Content</label>
-    <input type="text" class="form-control" placeholder="Post Content" id="postDesc"
-           ng-model="model.postDesc"
-           required>
+    <textarea rows="5" class="form-control" placeholder="Post Content" id="postDesc" ng-model="model.postDesc"
+              required></textarea>
+    <p class="help-block text-danger"></p>
+    <!--<input type="text" class="form-control" placeholder="Post Content" id="postDesc"-->
+           <!--ng-model="model.postDesc"-->
+           <!--required>-->
 
 </div>
 
