@@ -11,6 +11,14 @@
         vm.createContact = createContact;
 
         function createContact(name, email, phone, message) {
+            if (name === null || name === undefined || email === null || email === undefined || phone === null
+                || phone === undefined || message === null || message === undefined) {
+                vm.error = "Name, email, phone or message cannot be empty.";
+                $timeout(function () {
+                    vm.error = null;
+                }, 3000);
+                return;
+            }
             var contact = {
                 name: name,
                 email: email,
