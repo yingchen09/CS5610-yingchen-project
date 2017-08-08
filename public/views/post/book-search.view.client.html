@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <h1>Book Search</h1>
+    <div class="input-group">
+        <input ng-model="searchText" type="text" class="form-control">
+        <span class="input-group-btn">
+        <a ng-click="model.searchBooks(searchText)" class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+        </a>
+        </span>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-4">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Authors</th>
+                    <th>Publisher</th>
+                    <th>PublishedDate</th>
+                    <th>BookImage</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="book in model.books">
+                    <td ng-click="model.selectBook(book)">{{book.volumeInfo.title}}</td>
+                    <td>{{book.volumeInfo.authors}}</td>
+                    <td>{{book.volumeInfo.publisher}}</td>
+                    <td>{{book.volumeInfo.publishedDate}}</td>
+                    <td><img ng-src="{{book.imageLinks.small}}"/></td>
+                </tr>
+                </tbody>
+            </table>
+            <!--<img ng-click="model.selectBook(book)"-->
+                 <!--ng-src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg"/>-->
+        </div>
+    </div>
+
+</div>

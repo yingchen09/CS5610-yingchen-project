@@ -37,7 +37,8 @@ module.exports = function(mongoose, userModel) {
             .update({_id: postId},
                 {
                     name: post.name,
-                    description: post.description
+                    description: post.description,
+                    url: post.url
             });
     }
 

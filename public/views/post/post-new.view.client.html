@@ -9,7 +9,7 @@
             New Post
         </a>
         <div class="navbar-text pull-right margin-right">
-            <a ng-click="model.createPost(model.postName, model.postDesc)" class="cl-text-black">
+            <a ng-click="model.createPost(model.postName, model.postDesc, model.postUrl)" class="cl-text-black">
                 <span class="glyphicon glyphicon-ok"></span>
             </a>
         </div>
@@ -27,6 +27,13 @@
     <textarea rows="5" class="form-control" placeholder="Post Content" id="postDesc" ng-model="model.postDesc"
               required></textarea>
     <p class="help-block text-danger"></p>
+    <label for="postUrl">Links to lectures, readings, or code problems</label>
+    <input type="text" class="form-control" placeholder="Url" id="postUrl"
+           ng-model="model.postUrl">
+    <a class="btn btn-info btn-block"
+       href="#!/posts/search">
+        Notes from a book? Search and Add
+    </a>
     <!--<input type="text" class="form-control" placeholder="Post Content" id="postDesc"-->
            <!--ng-model="model.postDesc"-->
            <!--required>-->

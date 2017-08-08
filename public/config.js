@@ -48,6 +48,22 @@
                     currentUser: checkLoggedIn
                 }
             })
+            .when('/posts/search', {
+                templateUrl : "/views/post/book-search.view.client.html",
+                controller: "BookSearchController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
+            })
+            // .when('/posts/:pid/search', {
+            //     templateUrl : "/views/post/book-search.view.client.html",
+            //     controller: "PostEditController",
+            //     controllerAs: "model",
+            //     resolve: {
+            //         currentUser: checkLoggedIn
+            //     }
+            // })
             .when('/posts/:pid', {
                 templateUrl : "/views/post/post.view.client.html",
                 controller: "PostController",

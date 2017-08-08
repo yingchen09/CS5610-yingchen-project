@@ -4,6 +4,7 @@
         .controller("PostListController", PostListController)
         .controller("NewPostController", NewPostController)
         .controller("PostEditController", PostEditController)
+        .controller("BookSearchController", BookSearchController)
         .controller("PostController", PostController);
 
     function PostListController(currentUser, PostService, UserService, $location) {
@@ -42,7 +43,7 @@
         }
         init();
 
-        function createPost(postName, postDesc) {
+        function createPost(postName, postDesc, postUrl) {
             if (postName === undefined || postName === null) {
                 vm.error = "Post name cannot be empty.";
                 $timeout(function () {
@@ -52,7 +53,8 @@
             }
             var post = {
                 name: postName,
-                description: postDesc
+                description: postDesc,
+                url: postUrl
             };
             return PostService
                 .createPost(vm.uid, post)
@@ -145,5 +147,35 @@
         }
     }
 
+
+    function BookSearchController(currentUser, $http, PostService, $location) {
+        var vm = this;
+        vm.uid = currentUser._id;
+
+        vm.searchBooks = searchBooks;
+        vm.selectBook = selectBook;
+
+        function searchBooks(searchText) {
+            var url = "https://www.googleapis.com/books/v1/volumes?q=" + searchText;
+            $http
+                .get(url)
+                .then(function (response) {
+                    vm.books = response.data;
+                });
+        }
+
+        function selectBook(book) {
+            var post = {
+                bookTitle: book.volumeInfo.title,
+                bookImgUrl: book.imageLinks.small
+            };
+            PostService
+                .createPost(vm.uid, post)
+                .then(function () {
+                    $location.url("/posts");
+                });
+
+        }
+    }
 
 })();

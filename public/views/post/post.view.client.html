@@ -45,8 +45,11 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                {{model.post.description}}
-
+                <article>{{model.post.description}}</article>
+                <hr>
+                Notes from any books or links
+                <p>{{model.post.url}}</p>
+                <p>{{model.post.bookImgUrl}}</p>
                 <ul class="pager">
                     <li class="next">
                         <a href="#!/posts/{{model.post._id}}/edit">Edit</a>
