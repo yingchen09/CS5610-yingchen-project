@@ -8,14 +8,14 @@
                 <li>
                     <a href="#!/posts">My HomePage</a>
                 </li>
-                <li>
-                    <a href="#!/follows">All Follows</a>
-                </li>
-                <li>
-                    <a href="#!/contacts">All Comments</a>
-                </li>
-                <li>
-                    <a href="#!/contacts/new">Contact</a>
+                <!--<li>-->
+                    <!--<a href="#!/follows">All Follows</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="#!/contacts">All Comments</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <a href="#!/user/{{model.uid}}/contacts/new">Contact</a>
                 </li>
                 <li>
                     <a ng-click="model.logout()">Logout</a>
@@ -48,7 +48,7 @@
     <div ng-show="model.updated" class="alert alert-success" role="alert">{{model.updated}}</div>
     <ul class="pager">
         <li class="next">
-            <a href="#!/posts">Back To Posts</a>
+            <a href="#!/user/{{model.uid}}/posts">Back To Posts</a>
         </li>
     </ul>
 </div>

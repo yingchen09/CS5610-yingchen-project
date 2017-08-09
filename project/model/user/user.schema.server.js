@@ -18,11 +18,7 @@ module.exports = function(mongoose){
         phone : String,
         posts : [{type: Schema.Types.ObjectId, ref: 'postModel'}],
         contacts : [{type: Schema.Types.ObjectId, ref: 'contactModel'}],
-        follows : [{type: Schema.Types.ObjectId, ref: 'followModel'}],
-        // websites : [{
-        //     type: Schema.Types.ObjectId,
-        //     ref : 'websiteModel'
-        // }],
+        follows : [{type: Schema.Types.ObjectId, ref: 'userModel'}],
         dateCreated : {
             type : Date,
             default: Date.now

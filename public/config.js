@@ -32,6 +32,14 @@
                     currentUser: checkLoggedIn
                 }
             })
+            .when('/user/:uid/posts', {
+                templateUrl : "/views/post/post-list.view.client.html",
+                controller: "PostListController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
+            })
             .when('/posts/new', {
                 templateUrl : "/views/post/post-new.view.client.html",
                 controller: "NewPostController",
@@ -48,7 +56,7 @@
                     currentUser: checkLoggedIn
                 }
             })
-            .when('/posts/search', {
+            .when('/posts/:pid/search', {
                 templateUrl : "/views/post/book-search.view.client.html",
                 controller: "BookSearchController",
                 controllerAs: "model",
@@ -56,15 +64,15 @@
                     currentUser: checkLoggedIn
                 }
             })
-            // .when('/posts/:pid/search', {
-            //     templateUrl : "/views/post/book-search.view.client.html",
-            //     controller: "PostEditController",
-            //     controllerAs: "model",
-            //     resolve: {
-            //         currentUser: checkLoggedIn
-            //     }
-            // })
             .when('/posts/:pid', {
+                templateUrl : "/views/post/post.view.client.html",
+                controller: "PostController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
+            })
+            .when('/user/:uid/posts/:pid', {
                 templateUrl : "/views/post/post.view.client.html",
                 controller: "PostController",
                 controllerAs: "model",
@@ -80,7 +88,15 @@
                     currentUser: checkLoggedIn
                 }
             })
-            .when('/contacts/new', {
+            // .when('/contacts/new', {
+            //     templateUrl : "/views/contact/contact.view.client.html",
+            //     controller: "ContactController",
+            //     controllerAs: "model",
+            //     resolve: {
+            //         currentUser: checkLoggedIn
+            //     }
+            // })
+            .when('/user/:uid/contacts/new', {
                 templateUrl : "/views/contact/contact.view.client.html",
                 controller: "ContactController",
                 controllerAs: "model",
@@ -88,7 +104,7 @@
                     currentUser: checkLoggedIn
                 }
             })
-            .when('/contacts/success', {
+            .when('/user/:uid/contacts/success', {
                 templateUrl : "/views/contact/contact-success.view.client.html",
                 controller: "ContactSuccessController",
                 controllerAs: "model",

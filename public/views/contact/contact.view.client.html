@@ -8,15 +8,15 @@
                 <li>
                     <a href="#!/posts">My HomePage</a>
                 </li>
-                <li>
-                    <a href="#!/follows">All Follows</a>
-                </li>
-                <li>
-                    <a href="#!/contacts">All Comments</a>
-                </li>
-                <li>
-                    <a href="#!/contacts/new">Contact</a>
-                </li>
+                <!--<li>-->
+                    <!--<a href="#!/follows">All Follows</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="#!/contacts">All Comments</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="#!/contacts/new">Contact</a>-->
+                <!--</li>-->
                 <li>
                     <a ng-click="model.logout()">Logout</a>
                 </li>
@@ -46,6 +46,11 @@
 <!-- Main Content -->
 <div class="container">
     <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
+    <ul class="pager">
+        <li class="next">
+            <a href="#!/user/{{model.uid}}/posts">Back To Posts</a>
+        </li>
+    </ul>
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <p>Want to get in touch with me? Fill out the form below to send me a message and I will try to get back to you within 24 hours!</p>
@@ -53,14 +58,14 @@
             <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
             <!-- NOTE: To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
             <form name="sentMessage" id="contactForm" novalidate>
-                <div class="row control-group">
-                    <div class="form-group col-xs-12 floating-label-form-group controls">
-                        <label>Name</label>
-                        <input type="text" class="form-control" placeholder="Name" id="name" ng-model="model.name"
-                               required data-validation-required-message="Please enter your name.">
-                        <p class="help-block text-danger"></p>
-                    </div>
-                </div>
+                <!--<div class="row control-group">-->
+                    <!--<div class="form-group col-xs-12 floating-label-form-group controls">-->
+                        <!--<label>{{model.name}}</label>-->
+                        <!--&lt;!&ndash;<input type="text" class="form-control" placeholder="Name" id="name" ng-model="model.name"&ndash;&gt;-->
+                               <!--&lt;!&ndash;required data-validation-required-message="Please enter your name.">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<p class="help-block text-danger"></p>&ndash;&gt;-->
+                    <!--</div>-->
+                <!--</div>-->
                 <div class="row control-group">
                     <div class="form-group col-xs-12 floating-label-form-group controls">
                         <label>Email Address</label>
@@ -89,7 +94,7 @@
                 <div id="success"></div>
                 <div class="row">
                     <div class="form-group col-xs-12">
-                        <button type="submit" ng-click="model.createContact(model.name, model.email, model.phone, model.message)"
+                        <button type="submit" ng-click="model.createContact(model.email, model.phone, model.message)"
                                 class="btn btn-default">Send</button>
                     </div>
                 </div>

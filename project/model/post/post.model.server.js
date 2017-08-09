@@ -38,7 +38,9 @@ module.exports = function(mongoose, userModel) {
                 {
                     name: post.name,
                     description: post.description,
-                    url: post.url
+                    url: post.url,
+                    bookTitle: post.bookTitle,
+                    bookImgUrl: post.bookImgUrl
             });
     }
 

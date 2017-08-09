@@ -14,9 +14,9 @@
                 <li>
                     <a href="#!/contacts">All Comments</a>
                 </li>
-                <li>
-                    <a href="#!/contacts/new">Contact</a>
-                </li>
+                <!--<li>-->
+                    <!--<a href="#!/contacts/new">Contact</a>-->
+                <!--</li>-->
                 <li>
                     <a ng-click="model.logout()">Logout</a>
                 </li>
@@ -48,7 +48,7 @@
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <li ng-repeat="contact in model.contacts" class="contact-name">
-                <a>{{contact.name}}</a>
+                <a href="#!/user/{{contact.name}}/posts">{{contact.name}}</a>
                 <span class="meta">email: {{contact.email}} phone: {{contact.email}}</span>
                 {{contact.message}}
             </li>

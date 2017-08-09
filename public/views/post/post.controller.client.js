@@ -7,9 +7,16 @@
         .controller("BookSearchController", BookSearchController)
         .controller("PostController", PostController);
 
-    function PostListController(currentUser, PostService, UserService, $location) {
+    function PostListController(currentUser, PostService, UserService, $location, $routeParams) {
         var vm = this;
-        vm.uid = currentUser._id;
+        var userId = $routeParams.uid;//currentUser._id;
+
+        if (userId) {
+            vm.uid = userId;
+            vm.userId = userId;
+        } else {
+            vm.uid = currentUser._id;
+        }
 
         PostService
             .findPostsByUser(vm.uid)
@@ -43,7 +50,7 @@
         }
         init();
 
-        function createPost(postName, postDesc, postUrl) {
+        function createPost(postName, postDesc, postUrl, bookTitle, bookImgUrl) {
             if (postName === undefined || postName === null) {
                 vm.error = "Post name cannot be empty.";
                 $timeout(function () {
@@ -54,7 +61,9 @@
             var post = {
                 name: postName,
                 description: postDesc,
-                url: postUrl
+                url: postUrl,
+                bookTitle: bookTitle,
+                bookImgUrl: bookImgUrl
             };
             return PostService
                 .createPost(vm.uid, post)
@@ -148,9 +157,10 @@
     }
 
 
-    function BookSearchController(currentUser, $http, PostService, $location) {
+    function BookSearchController(currentUser, $http, $routeParams, PostService, $location) {
         var vm = this;
         vm.uid = currentUser._id;
+        vm.pid = $routeParams.pid;
 
         vm.searchBooks = searchBooks;
         vm.selectBook = selectBook;
@@ -160,21 +170,25 @@
             $http
                 .get(url)
                 .then(function (response) {
-                    vm.books = response.data;
+                    vm.books = response.data.items;
                 });
         }
 
-        function selectBook(book) {
-            var post = {
-                bookTitle: book.volumeInfo.title,
-                bookImgUrl: book.imageLinks.small
-            };
-            PostService
-                .createPost(vm.uid, post)
-                .then(function () {
-                    $location.url("/posts");
-                });
 
+        function selectBook(book) {
+            PostService
+                .findPostById(vm.pid)
+                .then(function (post) {
+                    vm.post = post;
+                    post.bookTitle = book.volumeInfo.title;
+                    if (book.volumeInfo.imageLinks.smallThumbnail) {
+                        post.bookImgUrl = book.volumeInfo.imageLinks.smallThumbnail;
+                    }
+                    PostService.updatePost(vm.pid, post);
+                    $location.url("/posts/" + vm.pid);
+                });
+            // vm.bookTitle = book.volumeInfo.title;
+            // vm.bookImgUrl = book.volumeInfo.imageLinks.smallThumbnail;
         }
     }
 

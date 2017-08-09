@@ -23,14 +23,15 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="book in model.books">
-                    <td ng-click="model.selectBook(book)">{{book.volumeInfo.title}}</td>
+                    <td herf="#!/" ng-click="model.selectBook(book)">{{book.volumeInfo.title}}</td>
                     <td>{{book.volumeInfo.authors}}</td>
                     <td>{{book.volumeInfo.publisher}}</td>
                     <td>{{book.volumeInfo.publishedDate}}</td>
-                    <td><img ng-src="{{book.imageLinks.small}}"/></td>
+                    <td><img ng-src="{{book.volumeInfo.imageLinks.smallThumbnail}}"/></td>
                 </tr>
                 </tbody>
             </table>
+            <!--<li ng-repeat="book in model.books">{{book.volumeInfo.title}}</li>-->
             <!--<img ng-click="model.selectBook(book)"-->
                  <!--ng-src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg"/>-->
         </div>
