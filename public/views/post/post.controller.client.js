@@ -135,8 +135,14 @@
         if (userId) {
             vm.uid = userId;
             vm.userId = userId;
+            UserService
+                .findUserById(vm.uid)
+                .then(function (user) {
+                    vm.username = user.username;
+                })
         } else {
             vm.uid = currentUser._id;
+            vm.username = currentUser.username;
         }
         vm.pid = $routeParams.pid;
 
@@ -144,8 +150,8 @@
             .findPostById(vm.pid)
             .then(function (post) {
                 vm.post = post;
-                vm.username = post._user.username;
-                console.log(post._user.username);
+                // vm.username = post._user.username;
+                // console.log(post._user.username);
                 vm.date = post.dateCreated.substring(0, 10);
             }, function (error) {
                 vm.error = "The post not found.";
