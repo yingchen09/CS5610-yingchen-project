@@ -5,6 +5,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
+                <li ng-if="model.userId">
+                    <a href="#!/posts">My HomePage</a>
+                </li>
                 <li>
                     <a href="#!/follows">All Follows</a>
                 </li>
@@ -33,7 +36,8 @@
                 <div class="site-heading">
                     <h1>Notes Share</h1>
                     <hr class="small">
-                    <span class="subheading">My HomePage</span>
+                    <span ng-if="model.userId === null || model.userId === undefined"
+                          class="subheading">My HomePage</span>
                 </div>
             </div>
         </div>
@@ -44,8 +48,13 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <li ng-repeat="post in model.posts" class="post-title">
+            <li ng-if="model.userId === null || model.userId === undefined" ng-repeat="post in model.posts" class="post-title">
                 <a href="#!/posts/{{post._id}}">
+                    {{post.name}}
+                </a>
+            </li>
+            <li ng-if="model.userId" ng-repeat="post in model.posts" class="post-title">
+                <a href="#!/user/{{model.userId}}/posts/{{post._id}}">
                     {{post.name}}
                 </a>
             </li>
@@ -53,7 +62,7 @@
             <!-- Pager -->
             <ul class="pager">
                 <li class="next">
-                    <a href="#!/posts/new">New Post</a>
+                    <a ng-if="model.userId === null || model.userId === undefined" href="#!/posts/new">New Post</a>
                 </li>
             </ul>
             <ul class="pager">

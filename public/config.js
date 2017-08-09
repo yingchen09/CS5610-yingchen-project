@@ -80,6 +80,14 @@
                     currentUser: checkLoggedIn
                 }
             })
+            .when('/user/:uid/posts/:pid', {
+                templateUrl : "/views/post/post.view.client.html",
+                controller: "PostController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
+            })
             .when('/contacts', {
                 templateUrl : "/views/contact/contact-list.view.client.html",
                 controller: "ContactListController",

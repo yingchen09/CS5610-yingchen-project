@@ -130,14 +130,22 @@
 
     function PostController(currentUser, $routeParams, PostService, UserService, $location) {
         var vm = this;
-        vm.uid = currentUser._id;
+        vm.currentUser = currentUser;
+        var userId = $routeParams.uid;
+        if (userId) {
+            vm.uid = userId;
+            vm.userId = userId;
+        } else {
+            vm.uid = currentUser._id;
+        }
         vm.pid = $routeParams.pid;
 
         PostService
             .findPostById(vm.pid)
             .then(function (post) {
                 vm.post = post;
-                vm.username = currentUser.username;
+                vm.username = post._user.username;
+                console.log(post._user.username);
                 vm.date = post.dateCreated.substring(0, 10);
             }, function (error) {
                 vm.error = "The post not found.";

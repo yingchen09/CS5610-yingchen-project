@@ -5,7 +5,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li>
+                <li ng-if="model.userId">
                     <a href="#!/posts">My HomePage</a>
                 </li>
                 <li>
@@ -15,7 +15,7 @@
                     <a href="#!/contacts">All Comments</a>
                 </li>
                 <li>
-                    <a href="#!/contacts/new">Contact</a>
+                    <a ng-if="model.userId" href="#!/contacts/new">Contact</a>
                 </li>
                 <li>
                     <a ng-click="model.logout()">Logout</a>
@@ -52,7 +52,7 @@
                 <hr>
                 Notes from any links
                 <p>{{model.post.url}}</p>
-                <ul class="pager">
+                <ul ng-if="model.userId === null || model.userId === undefined" class="pager">
                     <li class="next">
                         <a href="#!/posts/{{model.post._id}}/edit">Edit</a>
                     </li>
@@ -60,9 +60,14 @@
                 <hr>
                 <p>{{model.post.bookTitle}}</p>
                 <img ng-src="{{model.post.bookImgUrl}}"/>
-                <ul class="pager">
+                <ul ng-if="model.userId === null || model.userId === undefined" class="pager">
                     <li class="next">
                         <a href="#!/posts/{{model.post._id}}/search">Notes from a Book? Search and Add</a>
+                    </li>
+                </ul>
+                <ul ng-if="model.userId" class="pager">
+                    <li class="next">
+                        <a href="#!/user/{{model.uid}}/posts">Back To Posts</a>
                     </li>
                 </ul>
             </div>
