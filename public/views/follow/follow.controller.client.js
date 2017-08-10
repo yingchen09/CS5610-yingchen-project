@@ -32,8 +32,23 @@
 
     }
 
-    function FollowSearchController() {
+    function FollowSearchController(UserService, currentUser, $timeout) {
+        var vm = this;
+        vm.currentUser = currentUser;
+        vm.searchUser = searchUser;
 
+        function searchUser(searchText) {
+            UserService
+                .findUserByUsername(searchText)
+                .then(function (user) {
+                    vm.username = user.username;
+                    vm.uid = user._id;
+                }, function () {
+                    vm.error = "User not found.";
+                    $timeout(function () {
+                        vm.updated = null;
+                    }, 3000)});
+        }
     }
 
 
