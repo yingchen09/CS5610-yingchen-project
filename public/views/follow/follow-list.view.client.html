@@ -1,10 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
 
-</body>
-</html>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#!/posts">My HomePage</a>
+                </li>
+                <li>
+                    <a href="#!/follows">All Follows</a>
+                </li>
+                <li>
+                    <a href="#!/contacts">All Comments</a>
+                </li>
+                <!--<li>-->
+                <!--<a href="#!/contacts/new">Contact</a>-->
+                <!--</li>-->
+                <li>
+                    <a ng-click="model.logout()">Logout</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-image: url('../../img/contact-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="page-heading">
+                    <h1>All Followings</h1>
+                    <!--<hr class="small">-->
+                    <!--<span class="subheading">Have questions or comments?</span>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <li ng-repeat="follow in model.follows" class="contact-name">
+                <a ng-click="model.retrieveFollow(follow)">{{follow.name}}</a>
+                <!--<span class="meta">email: {{contact.email}} phone: {{contact.email}}</span>-->
+                <!--{{contact.message}}-->
+            </li>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-bottom cl-blue-navbar">
+    <div class="container-fuild">
+        <a href="#!/profile" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+            <span class="glyphicon glyphicon-user"></span>
+        </a>
+    </div>
+</nav>

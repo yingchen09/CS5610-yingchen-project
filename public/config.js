@@ -121,14 +121,20 @@
                 }
             })
             .when('/follows', {
-                templateUrl : "/views/follow/follow-list.view.client.html"
-                // controller: "HomeController",
-                // controllerAs: "model"
+                templateUrl : "/views/follow/follow-list.view.client.html",
+                controller: "FollowListController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
             .when('/follows/search', {
-                templateUrl : "/views/follow/follow-search.view.client.html"
-                // controller: "HomeController",
-                // controllerAs: "model"
+                templateUrl : "/views/follow/follow-search.view.client.html",
+                controller: "FollowSearchController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
             .when('/', {
                 templateUrl : "/views/home/home.view.client.html",

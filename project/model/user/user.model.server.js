@@ -12,13 +12,20 @@ module.exports = function(mongoose){
         'removePostFromUser' : removePostFromUser,
         'addPostForUser' : addPostForUser,
         'addContactForUser' : addContactForUser,
-        'deleteUser' : deleteUser
+        'deleteUser' : deleteUser,
+        'findFollowsByUser' : findFollowsByUser
     };
 
     return api;
 
     // Function Definition Section
 
+    function findFollowsByUser(userId) {
+        return userModel
+            .find({_user: userId})
+            .populate('follows')
+            .exec();
+    }
 
 
     function findUserByGoogleId(googleId) {

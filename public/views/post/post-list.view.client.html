@@ -38,6 +38,12 @@
                     <hr class="small">
                     <span ng-if="model.userId === null || model.userId === undefined"
                           class="subheading">My HomePage</span>
+                    <span ng-if="model.userId"
+                          class="subheading">{{model.username}}</span>
+                    <span ng-if="model.userId"
+                          class="glyphicon glyphicon-plus"></span>
+                    <span ng-if="model.userId"
+                          class="glyphicon glyphicon-minus"></span>
                 </div>
             </div>
         </div>

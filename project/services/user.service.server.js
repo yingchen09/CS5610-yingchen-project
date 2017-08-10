@@ -19,6 +19,18 @@ module.exports = function(app, models) {
 
     app.delete('/api/user/:uid', deleteUser);
 
+    //handle follows
+    app.get('/api/user/:uid', findFollowsByUser);
+
+    function findFollowsByUser(req, res) {
+        var uid = req.params.uid;
+        userModel
+            .findFollowsByUser(uid)
+            .then(function (follows) {
+                res.json(follows);
+            });
+    }
+
     //handle passport
     app.post('/api/login', passport.authenticate('local'), login);
     app.get('/api/loggedin', loggedin);
