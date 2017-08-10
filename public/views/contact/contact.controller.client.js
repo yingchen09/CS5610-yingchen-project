@@ -52,6 +52,15 @@
             vm.contacts = contacts;
         }
 
+        vm.contactUser = contactUser;
+        function contactUser(contact) {
+            UserService
+                .findUserByUsername(contact.name)
+                .then(function (user) {
+                    $location.url("/user/"+user._id+"/posts");
+                });
+        }
+
         vm.logout = logout;
         function logout() {
             UserService
