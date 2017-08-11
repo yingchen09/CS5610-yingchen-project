@@ -36,7 +36,12 @@ module.exports = function(mongoose){
 
 
     function createUser(user){
-        user.roles = ['USER'];
+        if (user.roles) {
+            user.roles = user.roles.split(',');
+        } else {
+            user.roles = ['USER'];
+        }
+
         var newUser = {
             username : user.username,
             password : user.password
@@ -82,6 +87,9 @@ module.exports = function(mongoose){
     function updateUser(userId, user){
         delete user.username;
         delete user.password;
+        if (typeof user.roles === 'string') {
+            user.roles = user.roles.split(',');
+        }
         return userModel.update({
             _id : userId
         }, {$set: user});
