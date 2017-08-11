@@ -4,6 +4,7 @@ module.exports = function(mongoose){
 
     var api = {
         'createUser' : createUser,
+        'findAllUsers' : findAllUsers,
         'findUserById' : findUserById,
         'findUserByUsername' : findUserByUsername,
         'findUserByCredentials' : findUserByCredentials,

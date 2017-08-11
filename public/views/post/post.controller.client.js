@@ -10,6 +10,7 @@
     function PostListController(currentUser, PostService, UserService, $location, $routeParams) {
         var vm = this;
         var userId = $routeParams.uid;//currentUser._id;
+        vm.currentUser = currentUser;
 
         if (userId) {
             vm.uid = userId;
@@ -19,6 +20,19 @@
                 .then(function (user) {
                     vm.username = user.username;
                 });
+
+            vm.addFollow = addFollow;
+            function addFollow(){
+                UserService
+                    .addFollow(currentUser._id, userId);
+            }
+
+            vm.removeFollow = removeFollow;
+            function removeFollow() {
+                UserService
+                    .removeFollow(currentUser._id, userId);
+            }
+
         } else {
             vm.uid = currentUser._id;
         }
@@ -29,6 +43,7 @@
         function renderPosts(posts) {
             vm.posts = posts;
         }
+
 
         vm.logout = logout;
         function logout() {

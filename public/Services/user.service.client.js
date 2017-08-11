@@ -7,18 +7,30 @@
 
         var services = {
             "createUser": createUser,
+            "findAllUsers": findAllUsers,
             "findUserById": findUserById,
             "findUserByUsername": findUserByUsername,
             "findUserByCredentials": findUserByCredentials,
             "login": login,
             "logout": logout,
             "loggedin": loggedin,
+            "checkAdmin": checkAdmin,
             "register": register,
             "updateUser": updateUser,
             "deleteUser": deleteUser,
-            "findFollowsByUser": findFollowsByUser
+            "findFollowsByUser": findFollowsByUser,
+            "addFollow": addFollow,
+            "removeFollow": removeFollow
         };
         return services;
+
+        function findAllUsers() {
+            var url = "/api/user";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
 
         function register(userObj) {
             var url = "/api/register";
@@ -30,6 +42,14 @@
 
         function loggedin() {
             var url = "/api/loggedin";
+            return $http.get(url)
+                .then(function(response) {
+                    return response.data;
+                });
+        }
+
+        function checkAdmin() {
+            var url = "/api/checkAdmin";
             return $http.get(url)
                 .then(function(response) {
                     return response.data;
@@ -110,6 +130,14 @@
                 .then(function (response) {
                     return response.data;
                 });
+        }
+
+        function addFollow(uid, userId) {
+
+        }
+
+        function removeFollow(uid, userId) {
+
         }
     }
 })();
