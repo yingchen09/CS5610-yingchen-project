@@ -15,7 +15,7 @@
                     <a href="#!/contacts">All Comments</a>
                 </li>
                 <li>
-                    <a ng-if="model.userId" href="#!/contacts/new">Contact</a>
+                    <a ng-if="model.userId" href="#!/user/{{model.uid}}/contacts/new">Contact</a>
                 </li>
                 <li>
                     <a ng-click="model.logout()">Logout</a>
