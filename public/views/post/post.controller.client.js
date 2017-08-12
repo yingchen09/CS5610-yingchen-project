@@ -28,13 +28,27 @@
         vm.addFollow = addFollow;
         function addFollow(){
             UserService
-                .addFollow(currentUser._id, userId);
+                .addFollow(currentUser._id, userId)
+                .then(function () {
+                    UserService
+                        .findUserById(currentUser._id)
+                        .then(function (user) {
+                            vm.currentUser = user;
+                        });
+                });
         }
 
         vm.removeFollow = removeFollow;
         function removeFollow() {
             UserService
-                .removeFollow(currentUser._id, userId);
+                .removeFollow(currentUser._id, userId)
+                .then(function () {
+                    UserService
+                        .findUserById(currentUser._id)
+                        .then(function (user) {
+                            vm.currentUser = user;
+                        });
+                });
         }
 
         PostService

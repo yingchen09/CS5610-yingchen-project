@@ -40,10 +40,10 @@
                           class="subheading">My HomePage</span>
                     <span ng-if="model.userId"
                           class="subheading">{{model.username}}</span>
-                    <span ng-if="model.userId && model.currentUser.follows.indexOf(userId) < 0"
+                    <span ng-if="model.userId && model.currentUser.follows.indexOf(model.userId) < 0"
                           ng-click="model.addFollow()"
                           class="glyphicon glyphicon-plus"></span>
-                    <span ng-if="model.userId  && model.currentUser.follows.indexOf(userId) > -1"
+                    <span ng-if="model.userId && model.currentUser.follows.indexOf(model.userId) > -1"
                           ng-click="model.removeFollow()"
                           class="glyphicon glyphicon-minus"></span>
                 </div>
