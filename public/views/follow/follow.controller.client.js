@@ -12,13 +12,19 @@
         UserService
             .findFollowsByUser(vm.uid)
             .then(renderFollows);
-        function renderFollows(follows) {
-            vm.follows = follows;
+        function renderFollows(user) {
+            vm.follows = user.follows;
         }
+
 
         vm.retrieveFollow = retrieveFollow;
         function retrieveFollow(follow) {
-            console.log(follow);
+            UserService
+                .findUserById(follow)
+                .then(function (user) {
+                    vm.username = user.username;
+                    vm.userId = user._id;
+                });
         }
 
         vm.logout = logout;

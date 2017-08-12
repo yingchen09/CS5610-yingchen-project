@@ -21,20 +21,20 @@
                     vm.username = user.username;
                 });
 
-            vm.addFollow = addFollow;
-            function addFollow(){
-                UserService
-                    .addFollow(currentUser._id, userId);
-            }
-
-            vm.removeFollow = removeFollow;
-            function removeFollow() {
-                UserService
-                    .removeFollow(currentUser._id, userId);
-            }
-
         } else {
             vm.uid = currentUser._id;
+        }
+
+        vm.addFollow = addFollow;
+        function addFollow(){
+            UserService
+                .addFollow(currentUser._id, userId);
+        }
+
+        vm.removeFollow = removeFollow;
+        function removeFollow() {
+            UserService
+                .removeFollow(currentUser._id, userId);
         }
 
         PostService

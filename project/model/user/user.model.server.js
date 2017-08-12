@@ -14,7 +14,9 @@ module.exports = function(mongoose){
         'addPostForUser' : addPostForUser,
         'addContactForUser' : addContactForUser,
         'deleteUser' : deleteUser,
-        'findFollowsByUser' : findFollowsByUser
+        'findFollowsByUser' : findFollowsByUser,
+        'addFollow' : addFollow,
+        'removeFollow' : removeFollow
     };
 
     return api;
@@ -23,9 +25,33 @@ module.exports = function(mongoose){
 
     function findFollowsByUser(userId) {
         return userModel
-            .find({_user: userId})
+            .findOne({_id: userId})
             .populate('follows')
             .exec();
+    }
+
+    function addFollow(uid, userId) {
+        return userModel
+            .findOne({_id: uid})
+            .then(function (user) {
+                user.follows.push(userId);
+                return user.save();
+            });
+    }
+
+    function removeFollow(uid, userId) {
+        userModel
+            .findOne({_id: uid})
+            .then(
+                function(user){
+                    var index = user.follows.indexOf(userId);
+                    user.follows.splice(index, 1);
+                    return user.save();
+                },
+                function(error){
+                    console.log(error);
+                }
+            );
     }
 
 

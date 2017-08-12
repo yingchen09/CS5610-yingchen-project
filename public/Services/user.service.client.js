@@ -125,7 +125,7 @@
         }
 
         function findFollowsByUser(userId) {
-            var url = "/api/user/" + userId;
+            var url = "/api/user/" + userId + "/follows";
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
@@ -133,11 +133,19 @@
         }
 
         function addFollow(uid, userId) {
-
+            var url = "/api/user/"+uid+"/add/"+userId;
+            return $http.put(url)
+                .then(function (response) {
+                    return response.data;
+                })
         }
 
         function removeFollow(uid, userId) {
-
+            var url = "/api/user/"+uid+"/remove/"+userId;
+            return $http.put(url)
+                .then(function (response) {
+                    return response.data;
+                })
         }
     }
 })();

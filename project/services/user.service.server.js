@@ -20,7 +20,9 @@ module.exports = function(app, models) {
     app.delete('/api/user/:uid', deleteUser);
 
     //handle follows
-    app.get('/api/user/:uid', findFollowsByUser);
+    app.get('/api/user/:uid/follows', findFollowsByUser);
+    app.put("/api/user/:uid/add/:userId", addFollow);
+    app.put("/api/user/:uid/remove/:userId", removeFollow);
 
     function findFollowsByUser(req, res) {
         var uid = req.params.uid;
@@ -28,6 +30,26 @@ module.exports = function(app, models) {
             .findFollowsByUser(uid)
             .then(function (follows) {
                 res.json(follows);
+            });
+    }
+
+    function addFollow(req, res) {
+        var uid = req.params.uid;
+        var userId = req.params.userId;
+        userModel
+            .addFollow(uid, userId)
+            .then(function(status) {
+                res.send(status);
+            });
+    }
+
+    function removeFollow(req, res) {
+        var uid = req.params.uid;
+        var userId = req.params.userId;
+        userModel
+            .removeFollow(uid, userId)
+            .then(function(status) {
+                res.send(status);
             });
     }
 
