@@ -9,6 +9,6 @@ their followings. When navigating others' homepage, user can click on the contac
 for others. User can also see all the comments in their own page.
 
 Login credentials:
-username: admin, password: admin
-username: ying, password: ying
-username: alice, password: alice
+username: admin, password: admin;
+username: ying, password: ying;
+username: alice, password: alice;
