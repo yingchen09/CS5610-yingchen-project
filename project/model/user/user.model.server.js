@@ -47,6 +47,8 @@ module.exports = function(mongoose){
                     var index = user.follows.indexOf(userId);
                     user.follows.splice(index, 1);
                     return user.save();
+                }, function (error) {
+                    console.log(error);
                 });
     }
 

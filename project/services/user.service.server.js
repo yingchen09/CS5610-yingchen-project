@@ -48,6 +48,7 @@ module.exports = function(app, models) {
         var userId = req.params.userId;
         userModel
             .removeFollow(uid, userId);
+        res.sendStatus(200);
     }
 
     //handle passport
